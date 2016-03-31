@@ -8,5 +8,3 @@ RUN set -x \
     && apt-get update --quiet \
     && apt-get install --quiet --yes --no-install-recommends curl telnet wget dnsutils bonnie++ atop \
     && apt-get clean
-
-CMD ["tail","-f","/dev/null"]
