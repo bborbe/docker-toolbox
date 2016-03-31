@@ -1,16 +1,16 @@
 default: build
 
 clean:
-	docker rmi bborbe/ssh
+	docker rmi bborbe/toolbox
 
 build:
-	docker build --rm=true -t bborbe/ssh .
+	docker build --rm=true -t bborbe/toolbox .
 
 run:
-	docker run -h example.com -p 2222:22 -v /tmp:/ssh  bborbe/ssh:latest
+	docker run -h example.com -p 2222:22 -v /tmp:/toolbox  bborbe/toolbox:latest
 
 shell:
-	docker run -i -t bborbe/ssh:latest /bin/bash
+	docker run -i -t bborbe/toolbox:latest /bin/bash
 
 upload:
-	docker push bborbe/ssh
+	docker push bborbe/toolbox
