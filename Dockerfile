@@ -22,5 +22,6 @@ RUN set -x \
 	psmisc \
 	iputils-ping \
 	traceroute \
+	openssh-client \
 	&& DEBIAN_FRONTEND=noninteractive apt-get autoremove --yes \
 	&& DEBIAN_FRONTEND=noninteractive apt-get clean
