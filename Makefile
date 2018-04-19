@@ -1,5 +1,5 @@
 REGISTRY ?= docker.io
-IMAGE ?= bborbe/nfs-server
+IMAGE ?= bborbe/toolbox
 ifeq ($(VERSION),)
 	VERSION := $(shell git describe --tags `git rev-list --tags --max-count=1`)
 endif
