@@ -1,19 +1,17 @@
-VERSION ?= latest
 REGISTRY ?= docker.io
+IMAGE ?= bborbe/nfs-server
+ifeq ($(VERSION),)
+	VERSION := $(shell git describe --tags `git rev-list --tags --max-count=1`)
+endif
 
 default: build
 
-clean:
-	docker rmi $(REGISTRY)/bborbe/toolbox:$(VERSION)
-
 build:
-	docker build --build-arg VERSION=$(VERSION) --no-cache --rm=true -t $(REGISTRY)/bborbe/toolbox:$(VERSION) .
-
-run:
-	docker run -h example.com -p 2222:22 -v /tmp:/toolbox  $(REGISTRY)/bborbe/toolbox:$(VERSION)
-
-shell:
-	docker run -i -t $(REGISTRY)/bborbe/toolbox:$(VERSION) /bin/bash
+	docker build --no-cache --rm=true -t $(REGISTRY)/$(IMAGE):$(VERSION) .
 
 upload:
-	docker push $(REGISTRY)/bborbe/toolbox:$(VERSION)
+	docker push $(REGISTRY)/$(IMAGE):$(VERSION)
+
+clean:
+	docker rmi $(REGISTRY)/$(IMAGE):$(VERSION)
+
